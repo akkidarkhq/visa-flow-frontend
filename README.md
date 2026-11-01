@@ -1,6 +1,6 @@
 # VisaFlow Frontend
 
-A modern Next.js client application for managing individual and group travel visa applications, document reviews, applicant rosters, and real-time status tracking.
+A modern Next.js client application for managing individual and group travel visa applications, document reviews, applicant rosters, real-time status tracking, and AI-assisted visa guidance.
 
 Built with **Next.js 16 (App Router & Turbopack)**, **React 19**, **Tailwind CSS v4**, and **Base UI / Shadcn**.
 
@@ -31,7 +31,7 @@ Filtered view for **Group Visa Applications** (with per-group reference numbers,
 
 ---
 
-### 4. New Application Wizard – Travellers Roster (`/dashboard/new-application`)
+### 4. New Application Wizard - Travellers Roster (`/dashboard/new-application`)
 Multi-step wizard allowing single applicant or companion travellers to be added, with passport details, expiry, date of birth, and nationality.
 
 ![New Application Wizard - Travellers](docs/screenshots/04-new-application-travellers.png)
@@ -52,13 +52,21 @@ Instant group reference code generation (`GRP-YYYY-XXXXXX`) and individual track
 
 ---
 
+### 7. AI Chatbot Assistant (Database RAG Grounded)
+Interactive floating assistant widget grounded with verified embassy visa rules and database RAG. Supports multi-turn conversation history, live typing indicators, clickable follow-up suggestion chips, markdown table/checklist rendering, and automatic page context detection (country destination & application reference numbers).
+
+![AI Chatbot Assistant](docs/screenshots/07-ai-chatbot.png)
+
+---
+
 ## Tech Stack
 
 - **Framework**: [Next.js 16](https://nextjs.org/) (App Router, Turbopack)
 - **UI Library**: [React 19](https://react.dev/)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
 - **Components**: [Base UI](https://base-ui.com/), [Shadcn](https://ui.shadcn.com/)
-- **Icons**: [Hugeicons React](https://hugeicons.com/)
+- **Icons**: [Lucide React](https://lucide.dev/), [Hugeicons](https://hugeicons.com/)
+- **Markdown & AI**: [React Markdown](https://github.com/remarkjs/react-markdown), [Remark GFM](https://github.com/remarkjs/remark-gfm)
 
 ---
 
@@ -87,7 +95,7 @@ Instant group reference code generation (`GRP-YYYY-XXXXXX`) and individual track
 
 ## Available Scripts
 
-- `npm run dev` – Starts the Next.js development server with Turbopack.
-- `npm run build` – Creates an optimized production build.
-- `npm run start` – Starts the Next.js production server.
-- `npm run lint` – Runs ESLint.
+- `npm run dev` - Starts the Next.js development server with Turbopack.
+- `npm run build` - Creates an optimized production build.
+- `npm run start` - Starts the Next.js production server.
+- `npm run lint` - Runs ESLint.
