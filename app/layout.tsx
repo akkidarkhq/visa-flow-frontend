@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { ChatWidget } from "@/components/chatbot";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -43,7 +44,10 @@ export default function RootLayout({
         geistMono.variable
       )}
     >
-      <body className="min-h-full flex flex-col font-sans overflow-x-hidden w-full max-w-[100vw]">{children}</body>
+      <body className="min-h-full flex flex-col font-sans overflow-x-hidden w-full max-w-[100vw]">
+        {children}
+        <ChatWidget />
+      </body>
     </html>
   );
 }
