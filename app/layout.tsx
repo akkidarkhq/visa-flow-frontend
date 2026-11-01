@@ -37,13 +37,13 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn(
-        "h-full antialiased",
+        "h-full antialiased overflow-x-hidden",
         plusJakartaSans.variable,
         inter.variable,
         geistMono.variable
       )}
     >
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans overflow-x-hidden w-full max-w-[100vw]">{children}</body>
     </html>
   );
 }

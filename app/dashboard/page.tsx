@@ -341,7 +341,7 @@ export default function ClientDashboardPage() {
       <Navbar user={user} />
 
       {/* Main Container */}
-      <main className="max-w-7xl mx-auto p-6 md:p-8 space-y-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 md:p-8 py-6 space-y-8 w-full min-w-0">
         {/* API Error Notification */}
         {apiError && (
           <div
@@ -378,11 +378,11 @@ export default function ClientDashboardPage() {
         ) : (
           <>
             {/* Header / Welcome Card */}
-            <div className="rounded-xl border border-border bg-card p-6 md:p-8 shadow-sm">
+            <div className="rounded-xl border border-border bg-card p-4 sm:p-6 md:p-8 shadow-sm">
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                 <div className="space-y-1.5">
-                  <div className="flex items-center gap-2.5">
-                    <h2 className="text-2xl font-bold tracking-tight">
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <h2 className="text-xl sm:text-2xl font-bold tracking-tight break-words">
                       Welcome back, {user?.fullName || "Client"}
                     </h2>
                     <span
@@ -554,10 +554,10 @@ export default function ClientDashboardPage() {
 
             {/* SECTION 1: Group Visa Applications */}
             {(activeTab === "ALL" || activeTab === "GROUPS") && (
-              <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden space-y-0">
+              <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden space-y-0 w-full min-w-0">
                 <div className="p-6 border-b border-border flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-muted/10">
                   <div>
-                    <div className="flex items-center gap-2.5">
+                    <div className="flex items-center gap-2.5 flex-wrap">
                       <h3 className="text-lg font-semibold tracking-tight">
                         Group Visa Applications
                       </h3>
@@ -576,7 +576,7 @@ export default function ClientDashboardPage() {
                     No group visa applications found.
                   </div>
                 ) : (
-                  <div className="overflow-x-auto">
+                  <div className="overflow-x-auto w-full max-w-full">
                     <table className="w-full text-left text-sm">
                       <thead className="bg-muted/40 text-xs uppercase font-medium text-muted-foreground border-b border-border">
                         <tr>
@@ -657,10 +657,10 @@ export default function ClientDashboardPage() {
 
             {/* SECTION 2: Individual Visa Applications */}
             {(activeTab === "ALL" || activeTab === "INDIVIDUALS") && (
-              <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden space-y-0">
+              <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden space-y-0 w-full min-w-0">
                 <div className="p-6 border-b border-border flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-muted/10">
                   <div>
-                    <div className="flex items-center gap-2.5">
+                    <div className="flex items-center gap-2.5 flex-wrap">
                       <h3 className="text-lg font-semibold tracking-tight">
                         Individual Visa Applications
                       </h3>
@@ -679,7 +679,7 @@ export default function ClientDashboardPage() {
                     No individual visa applications found.
                   </div>
                 ) : (
-                  <div className="overflow-x-auto">
+                  <div className="overflow-x-auto w-full max-w-full">
                     <table className="w-full text-left text-sm">
                       <thead className="bg-muted/40 text-xs uppercase font-medium text-muted-foreground border-b border-border">
                         <tr>

@@ -121,10 +121,18 @@
   * {
     @apply border-border outline-ring/50;
   }
-  html,
+  html {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body-font), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
   }
   button,
   input,
