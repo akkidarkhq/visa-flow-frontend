@@ -12,6 +12,7 @@ import {
     ApiResponse,
     AuthData,
     LoginRequest,
+    SignupRequest,
     User,
     VisaApplicationSummary,
     VisaApplicationResponse,
@@ -47,6 +48,18 @@ export async function loginApi(credentials: LoginRequest): Promise<ApiResponse<A
 }
 
 /**
+ * Register a new user account with default CLIENT role
+ */
+export async function registerApi(data: SignupRequest): Promise<ApiResponse<User>> {
+    const response = await apiClient.post<User, SignupRequest>(
+        "/auth/signup",
+        data,
+        {requiresAuth: false}
+    );
+    return response;
+}
+
+/**
  * Fetch profile details for the currently authenticated client
  */
 export async function getUserProfileApi(): Promise<ApiResponse<User>> {
@@ -61,35 +74,43 @@ export async function getUserProfileApi(): Promise<ApiResponse<User>> {
 }
 
 /**
- * Fetch active visa applications for the authenticated client
+ * Fetch standalone solo / individual visa applications for the authenticated client.
+ * Corresponds to backend API: GET /applications/solo/user/{userId} (or GET /applications/solo?userId={userId})
+ * Guarantee: No group members will ever show up here.
  */
-export async function getUserApplicationsApi(
+export async function getUserSoloApplicationsApi(
     userId?: string
 ): Promise<ApiResponse<VisaApplicationSummary[]>> {
     const targetUserId = userId || getCurrentUser()?.id;
 
-    if (!targetUserId) {
-        throw new Error("User ID is required to fetch applications. User might not be logged in.");
+    if (targetUserId) {
+        return apiClient.get<VisaApplicationSummary[]>(
+            `/applications/solo/user/${targetUserId}`
+        );
     }
-    return apiClient.get<VisaApplicationSummary[]>("/applications", {
-        params: {userID: targetUserId}
-    });
+    return apiClient.get<VisaApplicationSummary[]>("/applications/solo");
 }
 
+// Backward-compatibility alias
+export const getUserApplicationsApi = getUserSoloApplicationsApi;
+
 /**
- * Fetch group visa applications for the authenticated client
- * Corresponds to backend API: GET /applications/groups/user/{userId}
+ * Fetch multi-person group visa applications for the authenticated client.
+ * Corresponds to backend API: GET /applications/groups/user/{userId} (or GET /applications/groups?userId={userId})
+ * Guarantee: Solo travelers will never show up here.
  */
 export async function getUserGroupApplicationsApi(
     userId?: string
 ): Promise<ApiResponse<GroupApplicationResponse[] | GroupApplicationResponse>> {
     const targetUserId = userId || getCurrentUser()?.id;
 
-    if (!targetUserId) {
-        throw new Error("User ID is required to fetch group applications.");
+    if (targetUserId) {
+        return apiClient.get<GroupApplicationResponse[] | GroupApplicationResponse>(
+            `/applications/groups/user/${targetUserId}`
+        );
     }
     return apiClient.get<GroupApplicationResponse[] | GroupApplicationResponse>(
-        `/applications/groups/user/${targetUserId}`
+        "/applications/groups"
     );
 }
 

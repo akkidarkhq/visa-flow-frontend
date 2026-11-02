@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useTransition } from "react";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { Navbar } from "@/components/layout/Navbar";
 import {
   getUserProfileApi,
+  getUserSoloApplicationsApi,
   getUserApplicationsApi,
   getUserGroupApplicationsApi,
   getCurrentUser,
@@ -112,7 +113,7 @@ export default function ClientDashboardPage() {
 
       // 2. Fetch individual visa applications
       try {
-        const appRes = await getUserApplicationsApi(userId);
+        const appRes = await getUserSoloApplicationsApi(userId);
         if (appRes.success && appRes.data) {
           setApplications(appRes.data);
         }
@@ -490,7 +491,7 @@ export default function ClientDashboardPage() {
                 <p className="text-xs font-medium text-muted-foreground">Total Travellers / Visas</p>
                 <div className="text-2xl font-bold">{totalActiveCases}</div>
                 <p className="text-xs text-muted-foreground">
-                  {applications.length} individual &bull; {totalGroupTravellers} in {groups.length} {groups.length === 1 ? "group" : "groups"}
+                  {applications.length} solo &bull; {totalGroupTravellers} in {groups.length} {groups.length === 1 ? "group" : "groups"}
                 </p>
               </div>
 
@@ -536,14 +537,14 @@ export default function ClientDashboardPage() {
                   size="sm"
                   onClick={() => setActiveTab("GROUPS")}
                 >
-                  Group Applications ({groups.length})
+                  👥 Family & Groups ({groups.length})
                 </Button>
                 <Button
                   variant={activeTab === "INDIVIDUALS" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setActiveTab("INDIVIDUALS")}
                 >
-                  Individual Applications ({applications.length})
+                  👤 Individual / Solo ({applications.length})
                 </Button>
               </div>
 
@@ -559,14 +560,14 @@ export default function ClientDashboardPage() {
                   <div>
                     <div className="flex items-center gap-2.5 flex-wrap">
                       <h3 className="text-lg font-semibold tracking-tight">
-                        Group Visa Applications
+                        👥 Family & Group Visa Applications
                       </h3>
                       <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-primary/10 text-primary border border-primary/20">
                         {groups.length} {groups.length === 1 ? "Group" : "Groups"}
                       </span>
                     </div>
                     <p className="text-xs text-muted-foreground mt-0.5">
-                      Batch applications containing multiple travellers created together.
+                      Trip groups with all their companions. Solo travelers are excluded.
                     </p>
                   </div>
                 </div>
@@ -662,21 +663,21 @@ export default function ClientDashboardPage() {
                   <div>
                     <div className="flex items-center gap-2.5 flex-wrap">
                       <h3 className="text-lg font-semibold tracking-tight">
-                        Individual Visa Applications
+                        👤 Individual / Solo Visa Applications
                       </h3>
                       <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-muted text-muted-foreground border border-border">
                         {applications.length} {applications.length === 1 ? "Application" : "Applications"}
                       </span>
                     </div>
                     <p className="text-xs text-muted-foreground mt-0.5">
-                      Direct individual visa cases associated with this account.
+                      Standalone solo applicants. Multi-person group members are excluded.
                     </p>
                   </div>
                 </div>
 
                 {applications.length === 0 ? (
                   <div className="p-8 text-center text-muted-foreground text-sm">
-                    No individual visa applications found.
+                    No solo / individual visa applications found.
                   </div>
                 ) : (
                   <div className="overflow-x-auto w-full max-w-full">

@@ -20,10 +20,10 @@ export default function LoginRoutePage() {
         <div className="text-center text-xs text-muted-foreground pt-4">
           Looking for dashboard preview?{" "}
           <Link
-            href="/dashboard"
+            href="/register"
             className="font-medium underline underline-offset-4 hover:text-primary"
           >
-            Go directly to Dashboard &rarr;
+            Register new user &rarr;
           </Link>
         </div>
       </main>

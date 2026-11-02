@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Standard API response and error contracts matching the backend:
  * com.akkidarkhq.visaflow.dto.ApiResponse<T> and ApiError
  */
@@ -24,6 +24,17 @@ export interface LoginRequest {
   username: string;
   password: string;
 }
+
+export interface SignupRequest {
+  username: string;
+  email: string;
+  fullName: string;
+  password: string;
+  phoneNumber: string;
+  role?: string;
+}
+
+export type RegisterRequest = SignupRequest;
 
 export type UserRole = "CLIENT" | "ADMIN";
 

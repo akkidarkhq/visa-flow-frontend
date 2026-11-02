@@ -21,10 +21,10 @@ export default function Home() {
         <div className="text-center text-xs text-muted-foreground pt-4">
           Looking for dashboard preview?{" "}
           <Link
-            href="/dashboard"
-            className="font-medium underline underline-offset-4 hover:text-primary"
+              href="/register"
+              className="font-medium underline underline-offset-4 hover:text-primary"
           >
-            Go directly to Dashboard &rarr;
+            Register new user &rarr;
           </Link>
         </div>
       </main>
